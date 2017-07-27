@@ -1,8 +1,21 @@
 import random
 '''
-Libary for python2 that holds most of the functions that
-'''
+Libary for python2 that holds most of the functions that will be
+used to hypothesis test in the test-hypothesis.py program.
 
+The primary function is count_consecutive_losses_season(), which
+simulates a single season while counting the number of two 
+consecutive losses. The assumption/default values is 82 games at a 
+winning percentage of 80%, as defined in the problem, but this is
+adjustable for part c.
+
+Note that we consider three consecutive losses to be 2 pairs of 
+consecutive losses. For example, (note that 1 is a win, and 0 is
+a loss)
+[0,0] --> 1 pair of losses
+[0,0,0] --> 2 consecutive pairs of losses
+[0,0,1,0,0] --> 2 consecutive pairs of losses
+'''
 
 #function declarations
 
@@ -102,9 +115,10 @@ def TEST_rng_many_seasons(num_iter=1000000, winning_pct=80, num_games=82):
 	tolerance = 0.01
 	seasons_wins = 0
 	for i in range(num_iter):
-		seasons_wins += sum(simulate_single_season(num_games, winning_pct))
+		seasons_wins += float(sum(simulate_single_season(num_games, 
+			winning_pct)))
 	assert( (winning_pct - tolerance) <=
-		(float(seasons_wins)/(num_games*num_iter))*100 <=
+		(seasons_wins/(num_games*num_iter))*100 <=
 		(winning_pct+tolerance))
 	print("Completed RNG test")
 
