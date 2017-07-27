@@ -1,7 +1,7 @@
-import matplotlib.pyplot as plt
-import numpy as np
 import random
-import sys
+'''
+Libary for python2 that holds most of the functions that
+'''
 
 
 #function declarations
@@ -97,14 +97,14 @@ def TEST_consecutive_losses_season(num_iter=10000):
 def TEST_rng_many_seasons(num_iter=1000000, winning_pct=80, num_games=82):
 	'''
 	tests the rng to see if the average number of wins are within 
-	tolerance (~0.1%)
+	tolerance (~0.01%)
 	'''
-	tolerance = 0.1
+	tolerance = 0.01
 	seasons_wins = 0
 	for i in range(num_iter):
 		seasons_wins += sum(simulate_single_season(num_games, winning_pct))
 	assert( (winning_pct - tolerance) <=
-		(seasons_wins/(num_games*num_iter))*100 <=
+		(float(seasons_wins)/(num_games*num_iter))*100 <=
 		(winning_pct+tolerance))
 	print("Completed RNG test")
 
