@@ -1,0 +1,53 @@
+> python simulation_driver.py
+simulation 100000
+simulation 200000
+simulation 300000
+simulation 400000
+simulation 500000
+simulation 600000
+simulation 700000
+simulation 800000
+simulation 900000
+simulation 1000000
+n = 1000000
+Sample Mean: 3.2414
+ Standard Deviation: 2.0343
+ pct of 0 cons losses: 5.8788
+value of t-statistic 1593.35774113
+ p-value: 0.00000000
+
+> python simulation_driver.py 10000
+simulation 1000
+simulation 2000
+simulation 3000
+simulation 4000
+simulation 5000
+simulation 6000
+simulation 7000
+simulation 8000
+simulation 9000
+simulation 10000
+n = 10000
+Sample Mean: 3.2244
+ Standard Deviation: 2.0425
+ pct of 0 cons losses: 6.3300
+value of t-statistic 157.86052529
+ p-value: 0.00000000
+
+> python simuation_driver.py 30
+simulation 3
+simulation 6
+simulation 9
+simulation 12
+simulation 15
+simulation 18
+simulation 21
+simulation 24
+simulation 27
+simulation 30
+n = 30
+Sample Mean: 3.5667
+ Standard Deviation: 2.1708
+ pct of 0 cons losses: 3.3333
+value of t-statistic 8.84807185
+ p-value: 0.00000000

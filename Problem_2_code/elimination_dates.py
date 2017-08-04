@@ -1,9 +1,24 @@
 import pandas as pd
 import numpy as np
 import sys
+'''
+Program that generates two csv files of elimination dates,
+both of which are exactly the same (sans formatting).
+
+Usage:
+python elimination_dates.py [filename.xlsx]
+
+note that the filename is optional, if not used, then it
+automatically opens Analytics_Attachement.xlsx
+
+The input should be formatted exactly like Analytics_Attachment.xlsx
+'''
 
 class Team(object):
     def __init__(self, num):
+        '''
+        Some useful fields for calculating elimination
+        '''
         self.team_id = num
         self.wins=0
         self.possible_wins = 82
@@ -12,7 +27,8 @@ class Team(object):
         self.winning_margin = 0
         self.elim_day = -1
         self.eliminated = False
-    
+   
+    #functions for winning and losing a game 
     def lose_game(self, frame):
         self.possible_wins -= 1
         if frame['Conference']:
@@ -24,8 +40,12 @@ class Team(object):
         self.wins += 1
         if frame['Conference']:
             self.conf_wins += 1
-        
+    
     def check_elimination(self, eighth_place_team, day):
+        '''
+        method for checking elimination based on the current
+        eighth place team
+        '''    
         if (self.possible_wins < eighth_place_team.wins 
             and not self.eliminated):
             self.eliminated = True
@@ -36,6 +56,7 @@ class Team(object):
                 self.eliminated = True
                 self.elim_day = day
             
+    #sorting methods
     def __lt__(self, other):
         if self.wins < other.wins:
             return True
@@ -54,15 +75,25 @@ class Team(object):
         return not self.__eq__(other)
 
 def check_confs_elimination(conf1, conf2, day):
+    '''
+    check both eliminations
+    '''
     check_conf_elimination(conf1, day)
     check_conf_elimination(conf2, day)
 
 def check_conf_elimination(conf, day):
+    '''
+    check every team in a single conference
+    '''
     eighth_place = sorted(conf)[-8]
     for team in conf:
         team.check_elimination(eighth_place, day)
 
 def simulate_season_updates(results):
+    '''
+    for both conferences, run through every team, and 
+    check both conferences for elimination
+    '''
     eastern = [Team(i) for i in range(15)]
     western = [Team(i+15) for i in range(15)]
 
@@ -87,6 +118,10 @@ def simulate_season_updates(results):
     return eastern, western
 
 def read_data(file_name="Analytics_Attachment.xlsx"):
+    '''
+    Clean the data, in order to help with indexing, and 
+    the margins.
+    '''
     teams_divisions=pd.read_excel(file_name, sheetname=0)
     teams_divisions['team_id'] = np.array([i for i in range(30)])
 
@@ -130,6 +165,10 @@ def read_data(file_name="Analytics_Attachment.xlsx"):
     return results, teams_divisions, start_date
 
 def output_elim_dates(teams_divisions, start_date, eastern, western, output_file_names):
+    '''
+    takes in the conference arrays, and prints the 
+    date of elimination or `playoffs` for each team
+    '''
     r = [0 for i in range(30)]
     for team in eastern:
         r[team.team_id] = team.elim_day
@@ -167,8 +206,3 @@ def main():
 
 if __name__=="__main__":
     main()
-
-        
-
-
-
