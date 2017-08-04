@@ -1,0 +1,91 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+
+\usepackage[thmmarks, amsmath, thref]{ntheorem}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\upshape}
+\theoremseparator{.}
+\theoremsymbol{\ensuremath{\square}}
+\newtheorem{proof}{Proof}
+\theoremsymbol{\ensuremath{\square}}
+\newtheorem{solution}{Solution}
+\theoremseparator{. ---}
+\theoremsymbol{\mbox{\texttt{;o)}}}
+\newtheorem{varsol}{Solution (variant)}
+
+% code listing settings
+\usepackage{listings}
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    aboveskip={1.0\baselineskip},
+    belowskip={1.0\baselineskip},
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\small,
+    stepnumber=1,
+    numbersep=10pt,
+    captionpos=t,
+    escapeinside={\%*}{*)}
+}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+\title{Problem 2 Write-up}%replace X with the appropriate number
+\author{Trust the Stochastic Process\\
+        (Eli Katz, Avi Mahajan, James Stroud)}
+
+\maketitle
+
+
+A team is eliminated from playoff consideration in the NBA if it impossible for the team to win more games than the eighth best team in its conference. Ties are broken first by division record (if the teams are in the same division), and then by conference record. Our procedure involved iterating through each game, updating the teams' records, and checking to see if any team has been eliminated after each game by simply comparing potential wins to the eighth-place team's current wins, as well as the tiebreakers (\lstinline|Team().check_elimination()|).
+
+In order to maintain a running list of the current season standings, we created \lstinline|Team()| objects that served as a container class for each of the teams, containing fields that held wins and maximum potential wins (overall, in-division, and in-conference), as well as methods for checking elimination. This allowed for easy sorting of the conferences after every game. 
+
+Currently, our method considers conference wins as its primary tiebreaker. Since division wins are rarely relevant to \textit{playoff} elimination (They are more relevant to division titles), and they tend to confound in cases of three or more tied teams, we decided to focus more on the conference records. The secondary conditions for elimination were not even relevant during the 2017 season as most teams were eliminated prior to the last game.
+
+Currently our algorithm is a brute-force algorithm, and is not particuarly optimized for the league it's simulating. We can speed up our code by means of heuristics that we haven't implemented in order to maintain robustness. One example is a games-played method. Teams in the NBA cannot be eliminated until at least the $41$st game. Consider the case where half of the teams in a conference lose their first 41 games, and the other half wins the first 41 games (This theoretical schedule would be incredibly unbalanced). We can use that fact to figure out the exact game after which 40 games have already played by every team, and then we can check every game after that. We can also limit our elimination checks to the conferences that are represented in each game. These changes can marginally change the amount of time the algorithm takes to run, but they won't change its complexity nor the algorithm itself. So we decided not to make these micro-optimizations.
+
+\end{document}
