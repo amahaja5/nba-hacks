@@ -65,10 +65,10 @@ def count_consecutive_losses_season(games=82, winning_pct=80):
 
     This is the IMPORTANT function
     '''
-    prev_game = int(random.randint(0,99) < winning_pct) # first game
+    prev_game = int(random.randint(0,9999) < winning_pct*100) # first game
     count = 0
     for i in range(games-1):
-        next_game = int(random.randint(0,99) < winning_pct)
+        next_game = int(random.randint(0,9999) < winning_pct*100)
         #games stored in temporary buffer
         if prev_game == 0 and next_game == 0:
             count += 1
@@ -80,14 +80,14 @@ def consecutive_losses_season_return_season(games=82, winning_pct=80):
     Similar to the previous function, except it also returns the
     "season" for testing purposes.
     '''
-    prev_game = int(random.randint(0,99) < winning_pct) # first game
+    prev_game = int(random.randint(0,9999) < winning_pct*100) # first game
     count = 0
     enum_games = 1
     #array to hold games
     game_list = [0 for i in range(games)]
     game_list[0] = prev_game
     for i in range(games-1):
-        next_game = int(random.randint(0,99) < winning_pct)
+        next_game = int(random.randint(0,99) < winning_pct*100)
         game_list[i+1] = next_game
         #games stored in temporary buffer
         if prev_game == 0 and next_game == 0:
@@ -112,14 +112,14 @@ def TEST_rng_many_seasons(num_iter=1000000, winning_pct=80, num_games=82):
     tests the rng to see if the average number of wins are within 
     tolerance (~0.01%)
     '''
-    tolerance = 0.01
+    epsilon = 0.01
     seasons_wins = 0
     for i in range(num_iter):
         seasons_wins += float(sum(simulate_single_season(num_games, 
             winning_pct)))
-    assert( (winning_pct - tolerance) <=
+    assert( (winning_pct - epsilon) <=
         (seasons_wins/(num_games*num_iter))*100 <=
-        (winning_pct+tolerance))
+        (winning_pct + epsilon))
     print("Completed RNG test")
 
 def main():

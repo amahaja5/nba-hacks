@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1501813399 "Problem_1.tex" "Problem_1.pdf" "Problem_1" 1501813400
+["pdflatex"] 1501815938 "Problem_1.tex" "Problem_1.pdf" "Problem_1" 1501853433
   "/usr/local/texlive/2016basic/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2016basic/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/usr/local/texlive/2016basic/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -106,6 +106,7 @@
   "/usr/local/texlive/2016basic/texmf-dist/tex/latex/amsmath/amstext.sty" 1456875012 2431 fe3078ec12fc30287f568596f8e0b948 ""
   "/usr/local/texlive/2016basic/texmf-dist/tex/latex/base/article.cls" 1459635588 19821 310da678527a7dfe2a02c88af38079b7 ""
   "/usr/local/texlive/2016basic/texmf-dist/tex/latex/base/ifthen.sty" 1454284088 5159 a08c9bbd48fc492f15b22e458bef961f ""
+  "/usr/local/texlive/2016basic/texmf-dist/tex/latex/base/omscmr.fd" 1454284088 2256 80ce1168fb4ce6a85583a9cf8972c013 ""
   "/usr/local/texlive/2016basic/texmf-dist/tex/latex/base/size12.clo" 1459635588 8303 1d67e16498f00f63da792fab169302fc ""
   "/usr/local/texlive/2016basic/texmf-dist/tex/latex/geometry/geometry.sty" 1284422013 40502 e003406220954b0716679d7928aedd8a ""
   "/usr/local/texlive/2016basic/texmf-dist/tex/latex/graphics-cfg/color.cfg" 1459978653 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
@@ -142,10 +143,11 @@
   "/usr/local/texlive/2016basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1493017063 323200 18d86931a9007c49810a5281688babb0 ""
   "/usr/local/texlive/2016basic/texmf-var/web2c/pdftex/pdflatex.fmt" 1492396711 2502199 bf27ec3b5335f22f36a21dc5f51fffbd ""
   "/usr/local/texlive/2016basic/texmf.cnf" 1463981856 628 02e65753891144204a0c89f7fa5761b2 ""
-  "Problem_1.aux" 1501813400 172 9204b6f2ab7c37afd91ce83c47314463 ""
-  "Problem_1.tex" 1501813399 4096 5dea9739e4d5989d594785f9519a57d3 ""
+  "Problem_1.aux" 1501815939 450 76f12cc6b82eb81db7b3e128ec78b235 ""
+  "Problem_1.tex" 1501815936 6339 0774c092250500de05dfa49a549faa9e ""
+  "figure_1.png" 1501815621 30636 3953b06f3bc186ea8617e401274fc072 ""
   (generated)
-  "Problem_1.thm"
   "Problem_1.pdf"
-  "Problem_1.aux"
   "Problem_1.log"
+  "Problem_1.aux"
+  "Problem_1.thm"

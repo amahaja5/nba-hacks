@@ -1,4 +1,4 @@
-function [prob] = ProbNoLoseStreak(pwin,games)
+function [ prob] = ProbNoLoseStreak(pwin,games)
 % I'm dividing the season up into 81 two-game windows. So Window 1 will be
 % games 1 and 2; Window 2 will be games 2 and 3. I will then, for each window,
 % calculate the probability of NOT losing both games in a window GIVEN you 

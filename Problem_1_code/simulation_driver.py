@@ -1,5 +1,5 @@
 from simulation_library import count_consecutive_losses_season
-import matplotlib.pyplot as pyp
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as stat
 import sys
@@ -17,7 +17,7 @@ Prints stats and displays histogram
 '''
 
 
-def two_loss_sample_sim(num_sim = 1000000):
+def two_loss_sample_sim(num_sim = 1000000, winning_pct=80):
     '''
     simulates num_sim number of seasons,
     and holds a buffer of the counts of two losses
@@ -29,7 +29,7 @@ def two_loss_sample_sim(num_sim = 1000000):
 
     counts = [0 for i in range(num_sim)]
     for i in range(num_sim):
-        counts[i] = count_consecutive_losses_season()
+        counts[i] = count_consecutive_losses_season(winning_pct*100)
         if (i+1) % int(num_sim/10) == 0:
             print("simulation %d" % (i+1))
     return counts
@@ -68,6 +68,11 @@ def print_hist(counts, sample_avg):
     '''
     generates a histogram of counts, with average marked
     '''
+    plt.hist(counts, bins=max(counts), color='c')
+    plt.axvline(sample_avg, color='b', linestyle='dashed', linewidth=2)
+    plt.xlabel('Consecutive Losses')
+    plt.ylabel('Frequency')
+    plt.title(r'Consecutive Loss Frequencies, p=0.8')
     plt.show()
 
 def main():
@@ -75,14 +80,14 @@ def main():
         counts = two_loss_sample_sim()
     else:
         try:
-            counts = two_loss_sample_sim(int(sys.argv[1]))
+
         except ValueError:
             print("Invalid input. Please enter an int.")
             return
     print("n = %d" % len(counts))
     (sample_avg, sample_std, pct) = display_stats(counts)
     t_testing(counts, 0)
-    #print_hist(counts)
+    print_hist(counts, sample_avg)
 
 if __name__ == '__main__':
     main()
