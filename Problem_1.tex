@@ -84,7 +84,7 @@ Another method we used to
 
 
 \section{Part b: Testing the Hypothesis}
-(see \lstinline|sample.out| for sample outputs)
+(see \lstinline|sample_out.txt| for sample outputs)
 
 Let's assume that the null hypothesis is $H_0: \mu = 0$, and the one-sided alternative hypothesis is $H_A: \mu > 0$, where $\mu$ is the average number of consecutive losses in a season, over \textit{every} season, assuming the Warriors have a 80\% chance of winning. Using our simulation code, we can generate a sample of $n=$ 1 million simulated seasons and count the number of pairs of consecutive-losses in each. Through our simulation code, we find that the average number of consecutive losses per season in the sample is 3.2244, and the sample standard deviation is 2.0425. 
 
@@ -92,7 +92,7 @@ Through our stats program, we find that the p-value is less than 0.00001 (it's a
 
 Even using a smaller sample of simulations, $n=30$, we can reject the null hypothesis at greater than that same confidence level 99.999\%
 
-Therefore, we can pretty safely reject the hypothesis that the Warriors will not lose consecutive games, assuming a win percentage of 80\%.
+Therefore, we can pretty safely reject the hypothesis that the Warriors will not lose consecutive games (that is, they \textit{will} likely lose consecutive games), assuming a win percentage of 80\%.
 
 
 \end{document}
